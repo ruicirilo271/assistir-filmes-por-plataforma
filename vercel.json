@@ -11,11 +11,6 @@
       "dest": "app.py"
     }
   ],
-  "functions": {
-    "app.py": {
-      "maxDuration": 30,
-      "runtime": "python3.9"
-    }
-  },
   "installCommand": "pip install -r requirements.txt && playwright install chromium"
 }
+
