@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ nome }} - Filmes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Filmes em {{ nome }}</h1>
+    <a href="{{ url_for('index') }}">Voltar</a>
+    <div class="grid">
+        {% for filme in filmes %}
+            <div class="filme">
+                <a href="{{ url_for('filme', slug=filme.slug) }}">
+                    <img src="{{ filme.imagem }}" alt="{{ filme.titulo }}">
+                    <p>{{ filme.titulo }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

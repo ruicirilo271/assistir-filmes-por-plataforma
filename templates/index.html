@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filmes por Plataforma</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Escolha a Plataforma de Streaming</h1>
+    <form method="get" action="{{ url_for('plataforma', nome='apple-tv-plus') }}">
+        <select onchange="if(this.value) window.location.href=this.value">
+            <option value="">Selecione uma plataforma</option>
+            {% for nome, url in plataformas.items() %}
+                <option value="{{ url_for('plataforma', nome=nome) }}">{{ nome.replace('-', ' ').capitalize() }}</option>
+            {% endfor %}
+        </select>
+    </form>
+</body>
+</html>

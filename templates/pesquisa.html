@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pesquisar filmes Apple TV+ - {{ query }}</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#fff; color:#333; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:15px; }
+    .card img { width: 100%; border-radius: 8px; }
+    .card { cursor:pointer; }
+    h3 { font-size: 1em; margin: 0.5em 0; }
+  </style>
+</head>
+<body>
+  <h1>Resultados para "{{ query }}" - Apple TV+</h1>
+  <a href="/">Voltar à lista</a>
+  <div class="grid">
+    {% for filme in resultados %}
+      <div class="card" onclick="window.location.href='/filme/{{ filme.slug }}'">
+        <img src="https://image.tmdb.org/t/p/w300{{ filme.poster_path }}" alt="Poster {{ filme.title }}">
+        <h3>{{ filme.title }}</h3>
+      </div>
+    {% else %}
+      <p>Nenhum filme Apple TV+ encontrado.</p>
+    {% endfor %}
+  </div>
+</body>
+</html>
