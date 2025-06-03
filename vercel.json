@@ -3,10 +3,7 @@
   "builds": [
     {
       "src": "app.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "50mb"
-      }
+      "use": "@vercel/python"
     }
   ],
   "routes": [
@@ -14,17 +11,6 @@
       "src": "/(.*)",
       "dest": "app.py"
     }
-  ],
-  "env": {
-    "PLAYWRIGHT_BROWSERS_PATH": "0"
-  },
-  "build": {
-    "env": {
-      "PLAYWRIGHT_BROWSERS_PATH": "0"
-    },
-    "commands": [
-      "pip install -r requirements.txt",
-      "playwright install chromium"
-    ]
-  }
+  ]
 }
+
