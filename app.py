@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, abort
-from urllib.parse import urljoin
-from playwright.sync_api import sync_playwright
+from flask import Flask, render_template, abort
 import requests
 from bs4 import BeautifulSoup
+from playwright.sync_api import sync_playwright
 
 app = Flask(__name__)
+
+BROWSERLESS_WS = "wss://chrome.browserless.io?token=2SQWlX96lKroCfc87304078515d155a6e2fd24b3c74c87222"
 
 PLATAFORMAS = {
     "apple-tv-plus": "https://www.filmelier.com/br/streamings/apple-tv-plus",
@@ -18,9 +19,8 @@ PLATAFORMAS = {
 }
 
 def get_filmes_filmelier(url):
-    base_url = "https://www.filmelier.com"
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.connect_over_cdp(BROWSERLESS_WS)
         page = browser.new_page()
         page.goto(url)
         page.wait_for_selector('a > img[data-src]')
@@ -76,4 +76,5 @@ def filme(slug):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
