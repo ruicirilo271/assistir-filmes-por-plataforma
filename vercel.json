@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.py"
+    }
+  ],
+  "env": {
+    "BROWSERLESS_WS": "wss://chrome.browserless.io?token=2SQWlX96lKroCfc87304078515d155a6e2fd24b3c74c87222"
+  },
+  "build": {
+    "env": {
+      "PLAYWRIGHT_BROWSERS_PATH": "0"
+    }
+  }
+}
